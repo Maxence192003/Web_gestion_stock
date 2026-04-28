@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/user-form.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="form-shell">
+        <div class="form-card">
+            <div class="form-topbar">
+                <h1>{{ title }}</h1>
+                <a class="back-link" href="{{ path('app_user_index') }}">Retour a la liste</a>
+            </div>
+
+            {{ form_start(form, {attr: {class: 'user-form'}}) }}
+                <div class="form-errors">{{ form_errors(form) }}</div>
+                {{ form_row(form.nom) }}
+                {{ form_row(form.prenom) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.plainPassword) }}
+                <button type="submit">Enregistrer</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

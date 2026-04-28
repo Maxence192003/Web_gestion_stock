@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ventes{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/listing.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="content-shell">
+        <h1 class="page-title">Ventes</h1>
+
+        {% if ventes is empty %}
+            <div class="empty-state">Aucune vente enregistree pour le moment.</div>
+        {% else %}
+            <div class="table-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Produit</th>
+                            <th>Quantite</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for vente in ventes %}
+                            <tr>
+                                <td>{{ vente.id }}</td>
+                                <td>{{ vente.produit.nom }}</td>
+                                <td>{{ vente.quantite }}</td>
+                                <td>{{ vente.dateVente ? vente.dateVente|date('d/m/Y H:i') : '-' }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

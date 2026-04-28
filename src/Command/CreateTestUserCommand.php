@@ -14,7 +14,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[AsCommand(
     name: 'app:create-test-user',
-    description: 'Create or update the default test user for JWT authentication.',
+    description: 'Create or update the default test user for authentication.',
 )]
 final class CreateTestUserCommand extends Command
 {

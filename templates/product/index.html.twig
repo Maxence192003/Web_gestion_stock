@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/product-index.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="page-shell">
+        <div class="page-container">
+            <div class="page-header">
+                <div>
+                    <h1>Gestion des produits</h1>
+                    <p>Depuis le web, tu peux gerer le nom, les prix et le stock initial.</p>
+                </div>
+                <div class="actions">
+                    <a class="button button-primary" href="{{ path('app_product_new') }}">Ajouter un produit</a>
+                    <a class="button button-secondary" href="{{ path('app_logout') }}">Se deconnecter</a>
+                </div>
+            </div>
+
+            {% for message in app.flashes('success') %}
+                <div class="flash-success">{{ message }}</div>
+            {% endfor %}
+
+            <form class="filters" method="get">
+                <label for="type">Filtrer par type</label>
+                <select id="type" name="type">
+                    <option value="">Tous</option>
+                    {% for typeValue, typeLabel in availableTypes %}
+                        <option value="{{ typeValue }}" {{ selectedType == typeValue ? 'selected' : '' }}>{{ typeLabel }}</option>
+                    {% endfor %}
+                </select>
+                <button class="button button-secondary" type="submit">Filtrer</button>
+                {% if selectedType %}
+                    <a class="button button-secondary" href="{{ path('app_product_index') }}">Reinitialiser</a>
+                {% endif %}
+            </form>
+
+            {% if produits is empty %}
+                <div class="empty-state">
+                    Aucun produit pour le moment. Cree le premier depuis le bouton ci-dessus.
+                </div>
+            {% else %}
+                <div class="grid">
+                    {% for produit in produits %}
+                        <article class="card">
+                            <h2>{{ produit.nom }}</h2>
+                            <p class="meta"><strong>Type :</strong> {{ produit.typeProduit|capitalize }}</p>
+                            <p class="meta"><strong>Prix achat :</strong> {{ produit.prixAchat }} EUR</p>
+                            <p class="meta"><strong>Prix vente :</strong> {{ produit.prixVente }} EUR</p>
+                            <p class="meta"><strong>Stock :</strong> {{ produit.quantiteStock }}</p>
+
+                            <a class="button button-primary" href="{{ path('app_product_edit', {id: produit.id}) }}">Modifier</a>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

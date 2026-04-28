@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/login.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="login-page">
+        <form class="login-card" method="post">
+            <h1>Connexion web</h1>
+            <p>Acces a la gestion complete des produits.</p>
+
+            {% if error %}
+                <div class="login-error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <label for="username">Email</label>
+            <input type="email" id="username" name="_username" value="{{ last_username }}" required autofocus>
+
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="_password" required>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <button type="submit">Se connecter</button>
+
+            <div class="login-help">
+                Compte actuel : test@gmail.com / test1234
+            </div>
+        </form>
+    </div>
+{% endblock %}

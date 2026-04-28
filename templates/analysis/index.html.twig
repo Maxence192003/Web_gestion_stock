@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Analyses{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/analysis.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="analysis-shell">
+        <div class="analysis-header">
+            <h1>Analyses mensuelles</h1>
+            <p>Vue synthese pour le mois {{ periodLabel }}.</p>
+
+            <form class="analysis-filter" method="get">
+                <label for="mois">Choisir un mois</label>
+                <select id="mois" name="mois">
+                    {% for month in availableMonths %}
+                        <option value="{{ month }}" {{ month == selectedMonth ? 'selected' : '' }}>
+                            {{ month|replace({'-': '/'}) }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Afficher</button>
+            </form>
+        </div>
+
+        <div class="stats-grid">
+            <article class="stat-card">
+                <div class="stat-label">Chiffre d'affaires du mois</div>
+                <div class="stat-value">{{ monthlyRevenue|number_format(2, ',', ' ') }} EUR</div>
+            </article>
+        </div>
+
+        <div class="panel-grid">
+            <section class="panel">
+                <h2>Meilleures ventes</h2>
+                {% if topVentes is empty %}
+                    <p class="empty-state">Aucune vente sur cette periode.</p>
+                {% else %}
+                    <ul class="rank-list">
+                        {% for row in topVentes %}
+                            <li>
+                                <span class="rank-name">{{ row.nom }}</span>
+                                <span class="rank-value">{{ row.quantiteVendue }} ventes</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </section>
+
+            <section class="panel">
+                <h2>Plus de pertes</h2>
+                {% if topPertes is empty %}
+                    <p class="empty-state">Aucune perte sur cette periode.</p>
+                {% else %}
+                    <ul class="rank-list">
+                        {% for row in topPertes %}
+                            <li>
+                                <span class="rank-name">{{ row.nom }}</span>
+                                <span class="rank-value">{{ row.quantitePerdue }} pertes</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </section>
+        </div>
+    </div>
+{% endblock %}

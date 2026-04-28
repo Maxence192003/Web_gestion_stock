@@ -1,0 +1,20 @@
+.analysis-shell { max-width: 1100px; margin: 0 auto; padding: 28px; }
+.analysis-header { margin-bottom: 24px; }
+.analysis-header h1 { margin: 0 0 8px; }
+.analysis-header p { margin: 0; color: #475569; }
+.analysis-filter { margin-top: 18px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.analysis-filter label { font-weight: 700; }
+.analysis-filter select { padding: 10px 12px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fff; }
+.analysis-filter button { padding: 10px 14px; border: 0; border-radius: 10px; background: #1d4ed8; color: #fff; font-weight: 700; cursor: pointer; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-bottom: 24px; }
+.stat-card, .panel { background: #fff; border-radius: 18px; box-shadow: 0 18px 35px rgba(15, 23, 42, 0.08); padding: 22px; }
+.stat-label { color: #475569; margin-bottom: 8px; font-weight: 600; }
+.stat-value { font-size: 2rem; font-weight: 800; }
+.panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
+.panel h2 { margin-top: 0; margin-bottom: 16px; }
+.rank-list { list-style: none; margin: 0; padding: 0; }
+.rank-list li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid #e2e8f0; }
+.rank-list li:last-child { border-bottom: 0; }
+.rank-name { font-weight: 700; }
+.rank-value { color: #1d4ed8; font-weight: 700; }
+.empty-state { color: #64748b; }

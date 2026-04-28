@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/product-form.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="form-shell">
+        <div class="form-container">
+            <div class="form-topbar">
+                <h1>{{ title }}</h1>
+                <a class="back-link" href="{{ path('app_product_index') }}">Retour a la liste</a>
+            </div>
+
+            {{ form_start(form, {attr: {class: 'product-form'}}) }}
+                <div class="form-errors">{{ form_errors(form) }}</div>
+                {{ form_row(form.nom) }}
+                {{ form_row(form.prixAchat) }}
+                {{ form_row(form.prixVente) }}
+                {{ form_row(form.quantiteStock) }}
+                <button type="submit">Enregistrer</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -4,14 +4,30 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+        {% block stylesheets %}{% endblock %}
 
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     <body>
+        {% if app.user %}
+            {% set currentRoute = app.request.attributes.get('_route') %}
+            <nav class="app-nav">
+                <div class="app-nav__brand">Gestion Stock</div>
+                <div class="app-nav__links">
+                    <a href="{{ path('app_product_index') }}" class="{{ currentRoute starts with 'app_product_' ? 'is-active' : '' }}">Produits</a>
+                    <a href="{{ path('app_sale_index') }}" class="{{ currentRoute starts with 'app_sale_' ? 'is-active' : '' }}">Ventes</a>
+                    <a href="{{ path('app_loss_index') }}" class="{{ currentRoute starts with 'app_loss_' ? 'is-active' : '' }}">Pertes</a>
+                    <a href="{{ path('app_analysis_index') }}" class="{{ currentRoute starts with 'app_analysis_' ? 'is-active' : '' }}">Analyses</a>
+                    <a href="{{ path('app_user_index') }}" class="{{ currentRoute starts with 'app_user_' ? 'is-active' : '' }}">Utilisateurs</a>
+                </div>
+                <div class="app-nav__user">
+                    <span>{{ app.user.prenom }} {{ app.user.nom }}</span>
+                    <a class="app-nav__logout" href="{{ path('app_logout') }}">Deconnexion</a>
+                </div>
+            </nav>
+        {% endif %}
         {% block body %}{% endblock %}
     </body>
 </html>
