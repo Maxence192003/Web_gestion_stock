@@ -11,6 +11,12 @@ if [ "$1" = 'frankenphp' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 	# Or about an error in project initialization
 	php bin/console -V
 
+	if [ ! -f config/jwt/private.pem ] || [ ! -f config/jwt/public.pem ]; then
+		echo 'JWT keypair is missing, generating it now...'
+		mkdir -p config/jwt
+		php bin/console lexik:jwt:generate-keypair --skip-if-exists --no-interaction
+	fi
+
 	if grep -q ^DATABASE_URL= .env; then
 		echo 'Waiting for database to be ready...'
 		ATTEMPTS_LEFT_TO_REACH_DATABASE=60

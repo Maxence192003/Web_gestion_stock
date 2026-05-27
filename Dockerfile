@@ -120,6 +120,7 @@ SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
 
 ENV APP_ENV=prod
 ENV PHP_INI_SCAN_DIR=":/usr/local/etc/php/app.conf.d"
+ENV OPENSSL_CONF=/etc/ssl/openssl.cnf
 
 COPY --from=frankenphp_prod_builder /usr/local/bin/frankenphp /usr/local/bin/frankenphp
 COPY --from=frankenphp_prod_builder /usr/local/bin/php /usr/local/bin/php
@@ -135,6 +136,7 @@ COPY --from=frankenphp_prod_builder /etc/frankenphp/Caddyfile /etc/frankenphp/Ca
 
 # CA certificates for TLS, file/libmagic for Symfony MIME type detection
 COPY --from=frankenphp_prod_builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+COPY --from=frankenphp_prod_builder /etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY --from=frankenphp_prod_builder /usr/bin/file /usr/bin/file
 COPY --from=frankenphp_prod_builder /usr/lib/file/magic.mgc /usr/lib/file/magic.mgc
 
