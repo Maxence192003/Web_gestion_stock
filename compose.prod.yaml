@@ -9,6 +9,8 @@ services:
     volumes:
       - ./public/downloads:/app/public/downloads:ro
     environment:
+      APP_ENV: prod
+      APP_DEBUG: 0
       SERVER_NAME: ${SERVER_NAME:-:80}
       DEFAULT_URI: ${DEFAULT_URI:-https://std32.beaupeyrat.com}
       APP_SECRET: ${APP_SECRET}
