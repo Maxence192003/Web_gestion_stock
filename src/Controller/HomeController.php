@@ -21,8 +21,10 @@ final class HomeController extends AbstractController
     public function index(): Response
     {
         $downloadDirectory = $this->getParameter('kernel.project_dir').'/public/downloads';
-        $apkFiles = glob($downloadDirectory.'/*.apk') ?: [];
-        $apkPathname = $apkFiles[0] ?? null;
+        $apkPathname = $downloadDirectory.'/gestion-stock-mobile.apk';
+        if (!is_file($apkPathname)) {
+            $apkPathname = null;
+        }
         $apkVersion = $apkPathname ? (string) filemtime($apkPathname) : null;
 
         return $this->render('home/index.html.twig', [
