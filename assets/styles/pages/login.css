@@ -1,13 +1,21 @@
 .login-page {
     min-height: 100vh;
-    display: grid;
-    place-items: center;
     background: linear-gradient(135deg, #f4f7fb 0%, #e7efe8 100%);
     padding: 24px;
 }
 
+.login-layout {
+    width: min(980px, 100%);
+    margin: 0 auto;
+    min-height: calc(100vh - 48px);
+    display: grid;
+    grid-template-columns: minmax(320px, 420px) minmax(280px, 1fr);
+    gap: 24px;
+    align-items: center;
+}
+
 .login-card {
-    width: min(420px, 100%);
+    width: 100%;
     background: #ffffff;
     border-radius: 18px;
     box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
@@ -65,4 +73,65 @@
     margin-top: 16px;
     font-size: 0.95rem;
     color: #475569;
+}
+
+.login-download-card {
+    padding: 32px;
+    border-radius: 24px;
+    background: rgba(15, 23, 42, 0.94);
+    color: #f8fafc;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18);
+}
+
+.login-download-card__eyebrow {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #67e8f9;
+}
+
+.login-download-card h2 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.login-download-card p {
+    margin: 16px 0 0;
+    color: #cbd5e1;
+    line-height: 1.7;
+}
+
+.login-download-card__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    margin-top: 24px;
+    padding: 0 22px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #22c55e, #14b8a6);
+    color: #082f49;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-download-card__button--disabled {
+    background: #334155;
+    color: #cbd5e1;
+    cursor: not-allowed;
+}
+
+.login-download-card__hint {
+    margin-top: 14px;
+    font-size: 0.95rem;
+    color: #94a3b8;
+}
+
+@media (max-width: 860px) {
+    .login-layout {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
 }

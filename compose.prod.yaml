@@ -7,6 +7,9 @@ services:
       context: .
       target: frankenphp_prod
     environment:
+      SERVER_NAME: ${SERVER_NAME:-:80}
+      DEFAULT_URI: ${DEFAULT_URI:-https://std32.beaupeyrat.com}
       APP_SECRET: ${APP_SECRET}
+      SYMFONY_TRUSTED_PROXIES: ${SYMFONY_TRUSTED_PROXIES:-REMOTE_ADDR}
       MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET}
       MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET}

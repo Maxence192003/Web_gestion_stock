@@ -34,18 +34,21 @@ Effet attendu :
 - backend local disponible sur `http://localhost` ;
 - ngrok peut forwarder `http://localhost:80` sans conflit TLS local.
 
-## Changement 2 : desactivation du HTTPS automatique de Caddy
+## Changement 2 : bascule locale en HTTP via `SERVER_NAME=:80`
 
 Dans `frankenphp/Caddyfile`, les points suivants ont ete appliques :
 
-- `auto_https off`
-- site servi en `http://{$SERVER_NAME:localhost}`
+- site servi en `{$SERVER_NAME:localhost}`
 - suppression du domaine ngrok code en dur dans le fichier
+
+Le mode HTTP local ne depend plus d'un `auto_https off` global.
+Il depend du fait que la stack locale utilise `SERVER_NAME=:80` dans `compose.yaml`.
 
 Effet attendu :
 
 - le backend local reste simple ;
 - le HTTPS public est delegue a ngrok ;
+- le HTTPS de production reste possible quand `SERVER_NAME=std32.beaupeyrat.com` ;
 - aucun domaine ngrok ne doit etre commite dans le depot.
 
 ## Changement 3 : compatibilite avec les domaines ngrok

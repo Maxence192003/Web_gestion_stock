@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil Gestion Stock{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -8,13 +8,80 @@
 {% endblock %}
 
 {% block body %}
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<main class="download-page">
+    <section class="download-hero">
+        <p class="download-hero__eyebrow">Gestion Stock Beaupeyrat</p>
+        <h1>Connectez-vous au back-office ou telechargez l'application mobile</h1>
+        <p class="download-hero__lead">
+            Cette page d'accueil vous permet d'acceder a l'interface web de gestion
+            des stocks et de recuperer l'APK Android pour utiliser l'application mobile.
+        </p>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/app/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/app/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+        <section class="download-entry-grid">
+            <article class="download-entry-card download-entry-card--primary">
+                <p class="download-entry-card__eyebrow">Back-office</p>
+                <h2>Connexion a l'administration web</h2>
+                <p>
+                    Ouvrez l'interface de gestion pour consulter les produits,
+                    enregistrer les ventes et administrer les donnees de stock.
+                </p>
+                <a class="download-hero__button" href="{{ path('app_login') }}">
+                    Se connecter au back-office
+                </a>
+            </article>
+
+            <article class="download-entry-card">
+                <p class="download-entry-card__eyebrow">Application mobile</p>
+                <h2>Telechargement de l'APK Android</h2>
+                <p>
+                    Installez l'application mobile pour consulter le stock et saisir
+                    les operations directement depuis un telephone Android.
+                </p>
+
+                {% if apkAvailable %}
+                    <a class="download-hero__secondary" href="{{ asset('downloads/' ~ apkFilename) }}" download>
+                        Telecharger l'APK
+                    </a>
+                    <p class="download-hero__hint">
+                        Fichier propose : {{ apkFilename }}
+                    </p>
+                {% else %}
+                    <span class="download-hero__secondary download-hero__button--disabled">APK bientot disponible</span>
+                    <p class="download-hero__hint">
+                        Deposez un fichier .apk dans public/downloads pour activer automatiquement le telechargement.
+                    </p>
+                {% endif %}
+            </article>
+        </section>
+    </section>
+
+    <section class="download-card-grid">
+        <article class="download-card">
+            <h2>Ce que permet le back-office</h2>
+            <ul>
+                <li>Se connecter avec un compte utilisateur</li>
+                <li>Consulter et modifier les produits</li>
+                <li>Suivre les ventes, pertes et mouvements de stock</li>
+            </ul>
+        </article>
+
+        <article class="download-card">
+            <h2>Installation de l'application mobile</h2>
+            <ol>
+                <li>Telecharger l'APK sur votre telephone</li>
+                <li>Autoriser l'installation depuis votre navigateur si necessaire</li>
+                <li>Ouvrir l'application puis se connecter avec vos identifiants</li>
+            </ol>
+        </article>
+
+        <article class="download-card">
+            <h2>Acces proposes</h2>
+            <ul>
+                <li>Interface web pour la gestion complete</li>
+                <li>APK Android pour l'usage mobile</li>
+                <li>Connexion backend via l'ecran de login web</li>
+            </ul>
+        </article>
+    </section>
+</main>
 {% endblock %}
