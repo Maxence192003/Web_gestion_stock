@@ -6,6 +6,8 @@ services:
     build:
       context: .
       target: frankenphp_prod
+    volumes:
+      - ./public/downloads:/app/public/downloads:ro
     environment:
       SERVER_NAME: ${SERVER_NAME:-:80}
       DEFAULT_URI: ${DEFAULT_URI:-https://std32.beaupeyrat.com}
