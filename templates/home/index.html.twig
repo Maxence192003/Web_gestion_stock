@@ -23,7 +23,7 @@
             </a>
 
             {% if apkAvailable %}
-                <a class="download-hero__secondary" href="{{ asset('downloads/' ~ apkFilename) }}" download>
+                <a class="download-hero__secondary" href="{{ asset('downloads/' ~ apkFilename) }}?v={{ apkVersion }}" download>
                     Telecharger l'APK
                 </a>
             {% else %}

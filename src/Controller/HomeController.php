@@ -23,10 +23,12 @@ final class HomeController extends AbstractController
         $downloadDirectory = $this->getParameter('kernel.project_dir').'/public/downloads';
         $apkFiles = glob($downloadDirectory.'/*.apk') ?: [];
         $apkPathname = $apkFiles[0] ?? null;
+        $apkVersion = $apkPathname ? (string) filemtime($apkPathname) : null;
 
         return $this->render('home/index.html.twig', [
             'apkFilename' => $apkPathname ? basename($apkPathname) : null,
             'apkAvailable' => null !== $apkPathname,
+            'apkVersion' => $apkVersion,
         ]);
     }
 }
