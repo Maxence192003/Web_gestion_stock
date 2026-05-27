@@ -37,6 +37,7 @@ security:
                 login_path: app_login
                 check_path: app_login
                 default_target_path: /produits
+                success_handler: App\Security\FormLoginSuccessHandler
             logout:
                 path: app_logout
                 target: app_login

@@ -9,7 +9,7 @@
 
 {% block body %}
     <div class="login-page">
-        <form class="login-card" method="post" id="login-form">
+        <form class="login-card" method="post" id="login-form" action="{{ path('app_login') }}" data-turbo="false">
             <h1>Connexion back-office</h1>
             <p>Acces a la gestion complete des produits et du stock.</p>
 
