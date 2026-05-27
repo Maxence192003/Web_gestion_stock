@@ -16,15 +16,9 @@ final class SecurityController extends AbstractController
             return $this->redirectToRoute('app_product_index');
         }
 
-        $downloadDirectory = $this->getParameter('kernel.project_dir').'/public/downloads';
-        $apkFiles = glob($downloadDirectory.'/*.apk') ?: [];
-        $apkPathname = $apkFiles[0] ?? null;
-
         return $this->render('security/login.html.twig', [
             'last_username' => $authenticationUtils->getLastUsername(),
             'error' => $authenticationUtils->getLastAuthenticationError(),
-            'apkFilename' => $apkPathname ? basename($apkPathname) : null,
-            'apkAvailable' => null !== $apkPathname,
         ]);
     }
 

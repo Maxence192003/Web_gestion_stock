@@ -9,8 +9,7 @@
 
 {% block body %}
     <div class="login-page">
-        <div class="login-layout">
-        <form class="login-card" method="post">
+        <form class="login-card" method="post" id="login-form">
             <h1>Connexion back-office</h1>
             <p>Acces a la gestion complete des produits et du stock.</p>
 
@@ -32,27 +31,5 @@
                 Compte actuel : test@gmail.com / test1234
             </div>
         </form>
-
-        <aside class="login-download-card">
-            <p class="login-download-card__eyebrow">Application mobile</p>
-            <h2>Telecharger l'APK Android</h2>
-            <p>
-                Installez l'application mobile pour consulter le stock,
-                enregistrer les ventes et mettre a jour les produits depuis un telephone.
-            </p>
-
-            {% if apkAvailable %}
-                <a class="login-download-card__button" href="{{ asset('downloads/' ~ apkFilename) }}" download>
-                    Telecharger l'APK
-                </a>
-                <p class="login-download-card__hint">Fichier propose : {{ apkFilename }}</p>
-            {% else %}
-                <span class="login-download-card__button login-download-card__button--disabled">APK bientot disponible</span>
-                <p class="login-download-card__hint">
-                    Deposez un fichier .apk dans public/downloads pour activer automatiquement le telechargement.
-                </p>
-            {% endif %}
-        </aside>
-        </div>
     </div>
 {% endblock %}
